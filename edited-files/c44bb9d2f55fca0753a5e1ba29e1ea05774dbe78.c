@@ -51,8 +51,8 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
       {
         for (int z = z_m; z <= z_M; z += 1)
         {
-          float r0 = vp[x + 12][y + 12][z + 12]*vp[x + 12][y + 12][z + 12];
-          u[t1][x + 12][y + 12][z + 12] = 2.0F*(5.0e-1F*r0*(dt*dt)*(-1.50312647e-7F*(u[t0][x + 6][y + 12][z + 12] + u[t0][x + 12][y + 6][z + 12] + u[t0][x + 12][y + 12][z + 6] + u[t0][x + 12][y + 12][z + 18] + u[t0][x + 12][y + 18][z + 12] + u[t0][x + 18][y + 12][z + 12]) + 2.59740254e-6F*(u[t0][x + 7][y + 12][z + 12] + u[t0][x + 12][y + 7][z + 12] + u[t0][x + 12][y + 12][z + 7] + u[t0][x + 12][y + 12][z + 17] + u[t0][x + 12][y + 17][z + 12] + u[t0][x + 17][y + 12][z + 12]) - 2.23214281e-5F*(u[t0][x + 8][y + 12][z + 12] + u[t0][x + 12][y + 8][z + 12] + u[t0][x + 12][y + 12][z + 8] + u[t0][x + 12][y + 12][z + 16] + u[t0][x + 12][y + 16][z + 12] + u[t0][x + 16][y + 12][z + 12]) + 1.32275129e-4F*(u[t0][x + 9][y + 12][z + 12] + u[t0][x + 12][y + 9][z + 12] + u[t0][x + 12][y + 12][z + 9] + u[t0][x + 12][y + 12][z + 15] + u[t0][x + 12][y + 15][z + 12] + u[t0][x + 15][y + 12][z + 12]) - 6.69642842e-4F*(u[t0][x + 10][y + 12][z + 12] + u[t0][x + 12][y + 10][z + 12] + u[t0][x + 12][y + 12][z + 10] + u[t0][x + 12][y + 12][z + 14] + u[t0][x + 12][y + 14][z + 12] + u[t0][x + 14][y + 12][z + 12]) + 4.28571419e-3F*(u[t0][x + 11][y + 12][z + 12] + u[t0][x + 12][y + 11][z + 12] + u[t0][x + 12][y + 12][z + 11] + u[t0][x + 12][y + 12][z + 13] + u[t0][x + 12][y + 13][z + 12] + u[t0][x + 13][y + 12][z + 12]) - 2.23708328e-2F*u[t0][x + 12][y + 12][z + 12]) + 5.0e-1F*(r0*dt*damp[x + 1][y + 1][z + 1]*u[t0][x + 12][y + 12][z + 12] - u[t2][x + 12][y + 12][z + 12]) + 1.0F*u[t0][x + 12][y + 12][z + 12])/(r0*dt*damp[x + 1][y + 1][z + 1] + 1);
+          float r0 = vp[x + 6][y + 6][z + 6]*vp[x + 6][y + 6][z + 6];
+          u[t1][x + 6][y + 6][z + 6] = 2.0F*(5.0e-1F*r0*(dt*dt)*(4.93827172e-5F*(u[t0][x + 3][y + 6][z + 6] + u[t0][x + 6][y + 3][z + 6] + u[t0][x + 6][y + 6][z + 3] + u[t0][x + 6][y + 6][z + 9] + u[t0][x + 6][y + 9][z + 6] + u[t0][x + 9][y + 6][z + 6]) - 6.66666683e-4F*(u[t0][x + 4][y + 6][z + 6] + u[t0][x + 6][y + 4][z + 6] + u[t0][x + 6][y + 6][z + 4] + u[t0][x + 6][y + 6][z + 8] + u[t0][x + 6][y + 8][z + 6] + u[t0][x + 8][y + 6][z + 6]) + 6.66666683e-3F*(u[t0][x + 5][y + 6][z + 6] + u[t0][x + 6][y + 5][z + 6] + u[t0][x + 6][y + 6][z + 5] + u[t0][x + 6][y + 6][z + 7] + u[t0][x + 6][y + 7][z + 6] + u[t0][x + 7][y + 6][z + 6]) - 3.62962972e-2F*u[t0][x + 6][y + 6][z + 6]) + 5.0e-1F*(r0*dt*damp[x + 1][y + 1][z + 1]*u[t0][x + 6][y + 6][z + 6] - u[t2][x + 6][y + 6][z + 6]) + 1.0F*u[t0][x + 6][y + 6][z + 6])/(r0*dt*damp[x + 1][y + 1][z + 1] + 1);
         }
       }
     }
@@ -65,62 +65,62 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
     #pragma omp target teams distribute parallel for collapse(1)
     for (int p_src = p_src_m; p_src <= p_src_M; p_src += 1)
     {
-      int ii_src_0 = (int)(floor(-5.0e-2*o_x + 5.0e-2*src_coords[p_src][0]));
-      int ii_src_1 = (int)(floor(-5.0e-2*o_y + 5.0e-2*src_coords[p_src][1]));
-      int ii_src_2 = (int)(floor(-5.0e-2*o_z + 5.0e-2*src_coords[p_src][2]));
-      int ii_src_3 = (int)(floor(-5.0e-2*o_z + 5.0e-2*src_coords[p_src][2])) + 1;
-      int ii_src_4 = (int)(floor(-5.0e-2*o_y + 5.0e-2*src_coords[p_src][1])) + 1;
-      int ii_src_5 = (int)(floor(-5.0e-2*o_x + 5.0e-2*src_coords[p_src][0])) + 1;
-      float px = (float)(-o_x - 2.0e+1F*(int)(floor(-5.0e-2F*o_x + 5.0e-2F*src_coords[p_src][0])) + src_coords[p_src][0]);
-      float py = (float)(-o_y - 2.0e+1F*(int)(floor(-5.0e-2F*o_y + 5.0e-2F*src_coords[p_src][1])) + src_coords[p_src][1]);
-      float pz = (float)(-o_z - 2.0e+1F*(int)(floor(-5.0e-2F*o_z + 5.0e-2F*src_coords[p_src][2])) + src_coords[p_src][2]);
+      int ii_src_0 = (int)(floor(-6.66667e-2*o_x + 6.66667e-2*src_coords[p_src][0]));
+      int ii_src_1 = (int)(floor(-6.66667e-2*o_y + 6.66667e-2*src_coords[p_src][1]));
+      int ii_src_2 = (int)(floor(-6.66667e-2*o_z + 6.66667e-2*src_coords[p_src][2]));
+      int ii_src_3 = (int)(floor(-6.66667e-2*o_z + 6.66667e-2*src_coords[p_src][2])) + 1;
+      int ii_src_4 = (int)(floor(-6.66667e-2*o_y + 6.66667e-2*src_coords[p_src][1])) + 1;
+      int ii_src_5 = (int)(floor(-6.66667e-2*o_x + 6.66667e-2*src_coords[p_src][0])) + 1;
+      float px = (float)(-o_x - 1.5e+1F*(int)(floor(-6.66667e-2F*o_x + 6.66667e-2F*src_coords[p_src][0])) + src_coords[p_src][0]);
+      float py = (float)(-o_y - 1.5e+1F*(int)(floor(-6.66667e-2F*o_y + 6.66667e-2F*src_coords[p_src][1])) + src_coords[p_src][1]);
+      float pz = (float)(-o_z - 1.5e+1F*(int)(floor(-6.66667e-2F*o_z + 6.66667e-2F*src_coords[p_src][2])) + src_coords[p_src][2]);
       if (ii_src_0 >= x_m - 1 && ii_src_1 >= y_m - 1 && ii_src_2 >= z_m - 1 && ii_src_0 <= x_M + 1 && ii_src_1 <= y_M + 1 && ii_src_2 <= z_M + 1)
       {
-        float r1 = (dt*dt)*(vp[ii_src_0 + 12][ii_src_1 + 12][ii_src_2 + 12]*vp[ii_src_0 + 12][ii_src_1 + 12][ii_src_2 + 12])*(-1.25e-4F*px*py*pz + 2.5e-3F*px*py + 2.5e-3F*px*pz - 5.0e-2F*px + 2.5e-3F*py*pz - 5.0e-2F*py - 5.0e-2F*pz + 1)*src[time][p_src];
+        float r1 = (dt*dt)*(vp[ii_src_0 + 6][ii_src_1 + 6][ii_src_2 + 6]*vp[ii_src_0 + 6][ii_src_1 + 6][ii_src_2 + 6])*(-2.96296e-4F*px*py*pz + 4.44445e-3F*px*py + 4.44445e-3F*px*pz - 6.66667e-2F*px + 4.44445e-3F*py*pz - 6.66667e-2F*py - 6.66667e-2F*pz + 1)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_0 + 12][ii_src_1 + 12][ii_src_2 + 12] += r1;
+        u[t1][ii_src_0 + 6][ii_src_1 + 6][ii_src_2 + 6] += r1;
       }
       if (ii_src_0 >= x_m - 1 && ii_src_1 >= y_m - 1 && ii_src_3 >= z_m - 1 && ii_src_0 <= x_M + 1 && ii_src_1 <= y_M + 1 && ii_src_3 <= z_M + 1)
       {
-        float r2 = (dt*dt)*(vp[ii_src_0 + 12][ii_src_1 + 12][ii_src_3 + 12]*vp[ii_src_0 + 12][ii_src_1 + 12][ii_src_3 + 12])*(1.25e-4F*px*py*pz - 2.5e-3F*px*pz - 2.5e-3F*py*pz + 5.0e-2F*pz)*src[time][p_src];
+        float r2 = (dt*dt)*(vp[ii_src_0 + 6][ii_src_1 + 6][ii_src_3 + 6]*vp[ii_src_0 + 6][ii_src_1 + 6][ii_src_3 + 6])*(2.96296e-4F*px*py*pz - 4.44445e-3F*px*pz - 4.44445e-3F*py*pz + 6.66667e-2F*pz)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_0 + 12][ii_src_1 + 12][ii_src_3 + 12] += r2;
+        u[t1][ii_src_0 + 6][ii_src_1 + 6][ii_src_3 + 6] += r2;
       }
       if (ii_src_0 >= x_m - 1 && ii_src_2 >= z_m - 1 && ii_src_4 >= y_m - 1 && ii_src_0 <= x_M + 1 && ii_src_2 <= z_M + 1 && ii_src_4 <= y_M + 1)
       {
-        float r3 = (dt*dt)*(vp[ii_src_0 + 12][ii_src_4 + 12][ii_src_2 + 12]*vp[ii_src_0 + 12][ii_src_4 + 12][ii_src_2 + 12])*(1.25e-4F*px*py*pz - 2.5e-3F*px*py - 2.5e-3F*py*pz + 5.0e-2F*py)*src[time][p_src];
+        float r3 = (dt*dt)*(vp[ii_src_0 + 6][ii_src_4 + 6][ii_src_2 + 6]*vp[ii_src_0 + 6][ii_src_4 + 6][ii_src_2 + 6])*(2.96296e-4F*px*py*pz - 4.44445e-3F*px*py - 4.44445e-3F*py*pz + 6.66667e-2F*py)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_0 + 12][ii_src_4 + 12][ii_src_2 + 12] += r3;
+        u[t1][ii_src_0 + 6][ii_src_4 + 6][ii_src_2 + 6] += r3;
       }
       if (ii_src_0 >= x_m - 1 && ii_src_3 >= z_m - 1 && ii_src_4 >= y_m - 1 && ii_src_0 <= x_M + 1 && ii_src_3 <= z_M + 1 && ii_src_4 <= y_M + 1)
       {
-        float r4 = (dt*dt)*(vp[ii_src_0 + 12][ii_src_4 + 12][ii_src_3 + 12]*vp[ii_src_0 + 12][ii_src_4 + 12][ii_src_3 + 12])*(-1.25e-4F*px*py*pz + 2.5e-3F*py*pz)*src[time][p_src];
+        float r4 = (dt*dt)*(vp[ii_src_0 + 6][ii_src_4 + 6][ii_src_3 + 6]*vp[ii_src_0 + 6][ii_src_4 + 6][ii_src_3 + 6])*(-2.96296e-4F*px*py*pz + 4.44445e-3F*py*pz)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_0 + 12][ii_src_4 + 12][ii_src_3 + 12] += r4;
+        u[t1][ii_src_0 + 6][ii_src_4 + 6][ii_src_3 + 6] += r4;
       }
       if (ii_src_1 >= y_m - 1 && ii_src_2 >= z_m - 1 && ii_src_5 >= x_m - 1 && ii_src_1 <= y_M + 1 && ii_src_2 <= z_M + 1 && ii_src_5 <= x_M + 1)
       {
-        float r5 = (dt*dt)*(vp[ii_src_5 + 12][ii_src_1 + 12][ii_src_2 + 12]*vp[ii_src_5 + 12][ii_src_1 + 12][ii_src_2 + 12])*(1.25e-4F*px*py*pz - 2.5e-3F*px*py - 2.5e-3F*px*pz + 5.0e-2F*px)*src[time][p_src];
+        float r5 = (dt*dt)*(vp[ii_src_5 + 6][ii_src_1 + 6][ii_src_2 + 6]*vp[ii_src_5 + 6][ii_src_1 + 6][ii_src_2 + 6])*(2.96296e-4F*px*py*pz - 4.44445e-3F*px*py - 4.44445e-3F*px*pz + 6.66667e-2F*px)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_5 + 12][ii_src_1 + 12][ii_src_2 + 12] += r5;
+        u[t1][ii_src_5 + 6][ii_src_1 + 6][ii_src_2 + 6] += r5;
       }
       if (ii_src_1 >= y_m - 1 && ii_src_3 >= z_m - 1 && ii_src_5 >= x_m - 1 && ii_src_1 <= y_M + 1 && ii_src_3 <= z_M + 1 && ii_src_5 <= x_M + 1)
       {
-        float r6 = (dt*dt)*(vp[ii_src_5 + 12][ii_src_1 + 12][ii_src_3 + 12]*vp[ii_src_5 + 12][ii_src_1 + 12][ii_src_3 + 12])*(-1.25e-4F*px*py*pz + 2.5e-3F*px*pz)*src[time][p_src];
+        float r6 = (dt*dt)*(vp[ii_src_5 + 6][ii_src_1 + 6][ii_src_3 + 6]*vp[ii_src_5 + 6][ii_src_1 + 6][ii_src_3 + 6])*(-2.96296e-4F*px*py*pz + 4.44445e-3F*px*pz)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_5 + 12][ii_src_1 + 12][ii_src_3 + 12] += r6;
+        u[t1][ii_src_5 + 6][ii_src_1 + 6][ii_src_3 + 6] += r6;
       }
       if (ii_src_2 >= z_m - 1 && ii_src_4 >= y_m - 1 && ii_src_5 >= x_m - 1 && ii_src_2 <= z_M + 1 && ii_src_4 <= y_M + 1 && ii_src_5 <= x_M + 1)
       {
-        float r7 = (dt*dt)*(vp[ii_src_5 + 12][ii_src_4 + 12][ii_src_2 + 12]*vp[ii_src_5 + 12][ii_src_4 + 12][ii_src_2 + 12])*(-1.25e-4F*px*py*pz + 2.5e-3F*px*py)*src[time][p_src];
+        float r7 = (dt*dt)*(vp[ii_src_5 + 6][ii_src_4 + 6][ii_src_2 + 6]*vp[ii_src_5 + 6][ii_src_4 + 6][ii_src_2 + 6])*(-2.96296e-4F*px*py*pz + 4.44445e-3F*px*py)*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_5 + 12][ii_src_4 + 12][ii_src_2 + 12] += r7;
+        u[t1][ii_src_5 + 6][ii_src_4 + 6][ii_src_2 + 6] += r7;
       }
       if (ii_src_3 >= z_m - 1 && ii_src_4 >= y_m - 1 && ii_src_5 >= x_m - 1 && ii_src_3 <= z_M + 1 && ii_src_4 <= y_M + 1 && ii_src_5 <= x_M + 1)
       {
-        float r8 = 1.25e-4F*px*py*pz*(dt*dt)*(vp[ii_src_5 + 12][ii_src_4 + 12][ii_src_3 + 12]*vp[ii_src_5 + 12][ii_src_4 + 12][ii_src_3 + 12])*src[time][p_src];
+        float r8 = 2.96296e-4F*px*py*pz*(dt*dt)*(vp[ii_src_5 + 6][ii_src_4 + 6][ii_src_3 + 6]*vp[ii_src_5 + 6][ii_src_4 + 6][ii_src_3 + 6])*src[time][p_src];
         #pragma omp atomic update
-        u[t1][ii_src_5 + 12][ii_src_4 + 12][ii_src_3 + 12] += r8;
+        u[t1][ii_src_5 + 6][ii_src_4 + 6][ii_src_3 + 6] += r8;
       }
     }
     /* End section1 */
@@ -132,47 +132,47 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
     #pragma omp target teams distribute parallel for collapse(1)
     for (int p_rec = p_rec_m; p_rec <= p_rec_M; p_rec += 1)
     {
-      int ii_rec_0 = (int)(floor(-5.0e-2*o_x + 5.0e-2*rec_coords[p_rec][0]));
-      int ii_rec_1 = (int)(floor(-5.0e-2*o_y + 5.0e-2*rec_coords[p_rec][1]));
-      int ii_rec_2 = (int)(floor(-5.0e-2*o_z + 5.0e-2*rec_coords[p_rec][2]));
-      int ii_rec_3 = (int)(floor(-5.0e-2*o_z + 5.0e-2*rec_coords[p_rec][2])) + 1;
-      int ii_rec_4 = (int)(floor(-5.0e-2*o_y + 5.0e-2*rec_coords[p_rec][1])) + 1;
-      int ii_rec_5 = (int)(floor(-5.0e-2*o_x + 5.0e-2*rec_coords[p_rec][0])) + 1;
-      float px = (float)(-o_x - 2.0e+1F*(int)(floor(-5.0e-2F*o_x + 5.0e-2F*rec_coords[p_rec][0])) + rec_coords[p_rec][0]);
-      float py = (float)(-o_y - 2.0e+1F*(int)(floor(-5.0e-2F*o_y + 5.0e-2F*rec_coords[p_rec][1])) + rec_coords[p_rec][1]);
-      float pz = (float)(-o_z - 2.0e+1F*(int)(floor(-5.0e-2F*o_z + 5.0e-2F*rec_coords[p_rec][2])) + rec_coords[p_rec][2]);
+      int ii_rec_0 = (int)(floor(-6.66667e-2*o_x + 6.66667e-2*rec_coords[p_rec][0]));
+      int ii_rec_1 = (int)(floor(-6.66667e-2*o_y + 6.66667e-2*rec_coords[p_rec][1]));
+      int ii_rec_2 = (int)(floor(-6.66667e-2*o_z + 6.66667e-2*rec_coords[p_rec][2]));
+      int ii_rec_3 = (int)(floor(-6.66667e-2*o_z + 6.66667e-2*rec_coords[p_rec][2])) + 1;
+      int ii_rec_4 = (int)(floor(-6.66667e-2*o_y + 6.66667e-2*rec_coords[p_rec][1])) + 1;
+      int ii_rec_5 = (int)(floor(-6.66667e-2*o_x + 6.66667e-2*rec_coords[p_rec][0])) + 1;
+      float px = (float)(-o_x - 1.5e+1F*(int)(floor(-6.66667e-2F*o_x + 6.66667e-2F*rec_coords[p_rec][0])) + rec_coords[p_rec][0]);
+      float py = (float)(-o_y - 1.5e+1F*(int)(floor(-6.66667e-2F*o_y + 6.66667e-2F*rec_coords[p_rec][1])) + rec_coords[p_rec][1]);
+      float pz = (float)(-o_z - 1.5e+1F*(int)(floor(-6.66667e-2F*o_z + 6.66667e-2F*rec_coords[p_rec][2])) + rec_coords[p_rec][2]);
       float sum = 0.0F;
       if (ii_rec_0 >= x_m - 1 && ii_rec_1 >= y_m - 1 && ii_rec_2 >= z_m - 1 && ii_rec_0 <= x_M + 1 && ii_rec_1 <= y_M + 1 && ii_rec_2 <= z_M + 1)
       {
-        sum += (-1.25e-4F*px*py*pz + 2.5e-3F*px*py + 2.5e-3F*px*pz - 5.0e-2F*px + 2.5e-3F*py*pz - 5.0e-2F*py - 5.0e-2F*pz + 1)*u[t0][ii_rec_0 + 12][ii_rec_1 + 12][ii_rec_2 + 12];
+        sum += (-2.96296e-4F*px*py*pz + 4.44445e-3F*px*py + 4.44445e-3F*px*pz - 6.66667e-2F*px + 4.44445e-3F*py*pz - 6.66667e-2F*py - 6.66667e-2F*pz + 1)*u[t0][ii_rec_0 + 6][ii_rec_1 + 6][ii_rec_2 + 6];
       }
       if (ii_rec_0 >= x_m - 1 && ii_rec_1 >= y_m - 1 && ii_rec_3 >= z_m - 1 && ii_rec_0 <= x_M + 1 && ii_rec_1 <= y_M + 1 && ii_rec_3 <= z_M + 1)
       {
-        sum += (1.25e-4F*px*py*pz - 2.5e-3F*px*pz - 2.5e-3F*py*pz + 5.0e-2F*pz)*u[t0][ii_rec_0 + 12][ii_rec_1 + 12][ii_rec_3 + 12];
+        sum += (2.96296e-4F*px*py*pz - 4.44445e-3F*px*pz - 4.44445e-3F*py*pz + 6.66667e-2F*pz)*u[t0][ii_rec_0 + 6][ii_rec_1 + 6][ii_rec_3 + 6];
       }
       if (ii_rec_0 >= x_m - 1 && ii_rec_2 >= z_m - 1 && ii_rec_4 >= y_m - 1 && ii_rec_0 <= x_M + 1 && ii_rec_2 <= z_M + 1 && ii_rec_4 <= y_M + 1)
       {
-        sum += (1.25e-4F*px*py*pz - 2.5e-3F*px*py - 2.5e-3F*py*pz + 5.0e-2F*py)*u[t0][ii_rec_0 + 12][ii_rec_4 + 12][ii_rec_2 + 12];
+        sum += (2.96296e-4F*px*py*pz - 4.44445e-3F*px*py - 4.44445e-3F*py*pz + 6.66667e-2F*py)*u[t0][ii_rec_0 + 6][ii_rec_4 + 6][ii_rec_2 + 6];
       }
       if (ii_rec_0 >= x_m - 1 && ii_rec_3 >= z_m - 1 && ii_rec_4 >= y_m - 1 && ii_rec_0 <= x_M + 1 && ii_rec_3 <= z_M + 1 && ii_rec_4 <= y_M + 1)
       {
-        sum += (-1.25e-4F*px*py*pz + 2.5e-3F*py*pz)*u[t0][ii_rec_0 + 12][ii_rec_4 + 12][ii_rec_3 + 12];
+        sum += (-2.96296e-4F*px*py*pz + 4.44445e-3F*py*pz)*u[t0][ii_rec_0 + 6][ii_rec_4 + 6][ii_rec_3 + 6];
       }
       if (ii_rec_1 >= y_m - 1 && ii_rec_2 >= z_m - 1 && ii_rec_5 >= x_m - 1 && ii_rec_1 <= y_M + 1 && ii_rec_2 <= z_M + 1 && ii_rec_5 <= x_M + 1)
       {
-        sum += (1.25e-4F*px*py*pz - 2.5e-3F*px*py - 2.5e-3F*px*pz + 5.0e-2F*px)*u[t0][ii_rec_5 + 12][ii_rec_1 + 12][ii_rec_2 + 12];
+        sum += (2.96296e-4F*px*py*pz - 4.44445e-3F*px*py - 4.44445e-3F*px*pz + 6.66667e-2F*px)*u[t0][ii_rec_5 + 6][ii_rec_1 + 6][ii_rec_2 + 6];
       }
       if (ii_rec_1 >= y_m - 1 && ii_rec_3 >= z_m - 1 && ii_rec_5 >= x_m - 1 && ii_rec_1 <= y_M + 1 && ii_rec_3 <= z_M + 1 && ii_rec_5 <= x_M + 1)
       {
-        sum += (-1.25e-4F*px*py*pz + 2.5e-3F*px*pz)*u[t0][ii_rec_5 + 12][ii_rec_1 + 12][ii_rec_3 + 12];
+        sum += (-2.96296e-4F*px*py*pz + 4.44445e-3F*px*pz)*u[t0][ii_rec_5 + 6][ii_rec_1 + 6][ii_rec_3 + 6];
       }
       if (ii_rec_2 >= z_m - 1 && ii_rec_4 >= y_m - 1 && ii_rec_5 >= x_m - 1 && ii_rec_2 <= z_M + 1 && ii_rec_4 <= y_M + 1 && ii_rec_5 <= x_M + 1)
       {
-        sum += (-1.25e-4F*px*py*pz + 2.5e-3F*px*py)*u[t0][ii_rec_5 + 12][ii_rec_4 + 12][ii_rec_2 + 12];
+        sum += (-2.96296e-4F*px*py*pz + 4.44445e-3F*px*py)*u[t0][ii_rec_5 + 6][ii_rec_4 + 6][ii_rec_2 + 6];
       }
       if (ii_rec_3 >= z_m - 1 && ii_rec_4 >= y_m - 1 && ii_rec_5 >= x_m - 1 && ii_rec_3 <= z_M + 1 && ii_rec_4 <= y_M + 1 && ii_rec_5 <= x_M + 1)
       {
-        sum += 1.25e-4F*px*py*pz*u[t0][ii_rec_5 + 12][ii_rec_4 + 12][ii_rec_3 + 12];
+        sum += 2.96296e-4F*px*py*pz*u[t0][ii_rec_5 + 6][ii_rec_4 + 6][ii_rec_3 + 6];
       }
       rec[time][p_rec] = sum;
     }
@@ -191,7 +191,3 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
   #pragma omp target exit data map(delete: vp[0:vp_vec->size[0]][0:vp_vec->size[1]][0:vp_vec->size[2]])
   return 0;
 }
-/* Backdoor edit at Mon Mar  2 15:29:50 2020*/ 
-/* Backdoor edit at Mon Mar  2 19:34:29 2020*/ 
-/* Backdoor edit at Mon Mar  2 20:12:40 2020*/ 
-/* Backdoor edit at Mon Mar  2 20:13:34 2020*/ 
