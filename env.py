@@ -1,1 +1,1 @@
-{'DEVITO_PLATFORM': 'nvidiaX', 'DEVITO_ARCH': 'clang'}
+{'DEVITO_LOGGING': 'DEBUG', 'DEVITO_PLATFORM': 'nvidiaX', 'DEVITO_ARCH': 'clang'}

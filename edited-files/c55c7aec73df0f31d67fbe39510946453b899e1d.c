@@ -44,7 +44,7 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
     struct timeval start_section0, end_section0;
     gettimeofday(&start_section0, NULL);
     /* Begin section0 */
-    #pragma omp target teams distribute parallel for collapse(3)
+    #pragma omp target teams distribute parallel for
     for (int x = x_m; x <= x_M; x += 1)
     {
       for (int y = y_m; y <= y_M; y += 1)
@@ -194,3 +194,6 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
 /* Backdoor edit at Mon Mar  2 15:14:20 2020*/ 
 /* Backdoor edit at Mon Mar  2 15:16:15 2020*/ 
 /* Backdoor edit at Mon Mar  2 15:31:58 2020*/ 
+/* Backdoor edit at Mon Mar  2 15:53:00 2020*/ 
+/* Backdoor edit at Mon Mar  2 15:53:36 2020*/ 
+/* Backdoor edit at Mon Mar  2 15:55:00 2020*/ 
