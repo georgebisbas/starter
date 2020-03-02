@@ -1,3 +1,5 @@
+import os
+
 import click
 
 from devito import configuration, info, norm
@@ -48,6 +50,12 @@ def cli_run_jit_backdoor(problem, **kwargs):
                 v = norm(i)
                 info("norm(%s) = %f (expected = %f, delta = %f)"
                      % (i.name, v, reference[i.name], abs(v - reference[i.name])))
+
+    # Record DEVITO_ environment
+    env = [(k, v) for k, v in os.environ.items() if k.startswith('DEVITO_')]
+    content = "{%s}" % ", ".join("'%s': '%s'" % (k, v) for k, v in env)
+    with open('env.py', 'w') as f:
+        f.write(content)
 
 
 if __name__ == "__main__":

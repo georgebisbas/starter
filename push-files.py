@@ -25,6 +25,14 @@ for i in listdir(jitcachedir):
         copy(targetfile, targetdir)
         print("Copied `%s` to `%s`" % (targetfile, targetdir))
 
+# git-add env file
+envfile = path.join(repodir, 'env.py')
+if not path.exists(envfile):
+    raise ValueError("Cannot find env.py file. "
+                     "Have you accidentally removed it? "
+                     "Have you run run-preset.py at least once?")
+check_call(['git', 'add', 'env.py'])
+
 # Make sure we are in the root repo directory
 chdir(repodir)
 
@@ -33,4 +41,4 @@ check_call(['git', 'add', 'edited-files/'])
 
 # git-commit and git-push staged files
 check_call(['git', 'commit', '-am', 'Push files edited with JIT-BACKDOOR'])
-check_call(['git', 'push'])
+check_call(['git', 'push', 'origin', 'master'])
