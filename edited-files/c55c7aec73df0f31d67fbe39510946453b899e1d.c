@@ -191,5 +191,4 @@ int Forward(struct dataobj *restrict damp_vec, const float dt, const float o_x, 
   #pragma omp target exit data map(delete: vp[0:vp_vec->size[0]][0:vp_vec->size[1]][0:vp_vec->size[2]])
   return 0;
 }
-/* Backdoor edit at Mon Mar  2 04:34:40 2020*/ 
-/* Backdoor edit at Mon Mar  2 04:37:31 2020*/ 
+/* Backdoor edit at Mon Mar  2 15:14:20 2020*/ 
